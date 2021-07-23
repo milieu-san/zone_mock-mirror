@@ -1,0 +1,7 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'schemas/users.schema'
+require 'schemas/rooms.schema'
+require 'schemas/subscriptions.schema'
+require 'schemas/friendships.schema'

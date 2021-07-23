@@ -1,0 +1,317 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 3.0.1
+  Include:
+    - '**/*.rb'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'scripts/**/*'
+    - 'vendor/**/*'
+    - 'circleci.yml'
+    - 'node_modules/**/*'
+    - 'spec/*_helper.rb'
+    - 'tmp/**/*'
+  NewCops: enable
+
+Rails:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+    - lib/tasks/**/*.rake
+    - 'spec/**/*'
+
+# https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+
+# Check the naming of accessor methods for get_/set_.
+# https://github.com/bbatsov/ruby-style-guide#accessor_mutator_method_names
+Naming/AccessorMethodName:
+  Enabled: false
+
+# Align the elements of a hash literal if they span more than one line.
+Layout/HashAlignment:
+  Enabled: false
+
+# Use &&/|| instead of and/or.
+# https://github.com/bbatsov/ruby-style-guide#no-and-or-or
+Style/AndOr:
+  Enabled: true
+  Exclude:
+    - "app/controllers/**/*.rb"
+
+# Use only ascii symbols in comments.
+# https://github.com/bbatsov/ruby-style-guide#english-comments
+Style/AsciiComments:
+  Enabled: false
+
+# Checks if usage of %() or %Q() matches configuration.
+# https://github.com/bbatsov/ruby-style-guide#percent-q-shorthand
+Style/BarePercentLiterals:
+  Enabled: true
+  EnforcedStyle: percent_q
+
+# Avoid using {...} for multi-line blocks (multiline chaining is always ugly).
+# Prefer {...} over do...end for single-line blocks.
+# https://github.com/bbatsov/ruby-style-guide#single-line-blocks
+Style/BlockDelimiters:
+  Enabled: false
+
+# Checks style of children classes and modules.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.
+Style/ClassCheck:
+  Enabled: true
+  EnforcedStyle: is_a?
+
+# Indentation of comments.
+Layout/CommentIndentation:
+  Enabled: true
+  Exclude:
+    - "spec/spec_helper.rb"
+
+# Document classes and non-namespace modules.
+Style/Documentation:
+  Enabled: false
+
+# Checks for uses of double negation (!!).
+# https://github.com/bbatsov/ruby-style-guide#no-bang-bang
+Style/DoubleNegation:
+  Enabled: false
+
+# Use empty lines between defs.
+# https://github.com/bbatsov/ruby-style-guide#empty-lines-between-methods
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+  AllowAdjacentOneLineDefs: false
+
+# Enforce the use of Kernel#sprintf, Kernel#format or String#%.
+# https://github.com/bbatsov/ruby-style-guide#sprintf
+Style/FormatString:
+  Enabled: true
+  EnforcedStyle: format
+
+# Do not introduce global variables.
+# https://github.com/bbatsov/ruby-style-guide#instance-vars
+Style/GlobalVars:
+  Enabled: true
+  AllowedVariables: []
+
+# Check for conditionals that can be replaced with guard clauses
+# https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals
+Style/GuardClause:
+  Enabled: true
+  MinBodyLength: 4
+
+# Favor modifier if/unless usage when you have a single-line body.
+# https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Checks the indentation of the first element in an array literal.
+Layout/FirstArrayElementIndentation:
+  Enabled: true
+  EnforcedStyle: special_inside_parentheses
+
+# Checks the indentation of the first key in a hash literal.
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: special_inside_parentheses
+
+# Use the new lambda literal syntax for single-line blocks.
+# https://github.com/bbatsov/ruby-style-guide#lambda-multi-line
+Style/Lambda:
+  Enabled: false
+
+# Checks indentation of method calls with the dot operator that span more than one line.
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented_relative_to_receiver
+
+Style/Next:
+  Enabled: false
+
+# Add underscores to large numeric literals to improve their readability.
+# https://github.com/bbatsov/ruby-style-guide#underscores-in-numerics
+Style/NumericLiterals:
+  Enabled: true
+  MinDigits: 7
+
+# Checks if uses of %Q/%q match the configured preference.
+Style/PercentQLiterals:
+  Enabled: false
+
+# Check the names of predicate methods.
+# https://github.com/bbatsov/ruby-style-guide#bool-methods-qmark
+Naming/PredicateName:
+  Enabled: true
+  ForbiddenPrefixes:
+    - 'is_'
+    - 'have_'
+  NamePrefix:
+    - 'is_'
+    - 'have_'
+
+# Checks the arguments passed to raise/fail.
+# https://github.com/bbatsov/ruby-style-guide#exception-class-messages
+Style/RaiseArgs:
+  Enabled: true
+  EnforcedStyle: exploded
+
+# Don't use return where it's not required.
+# https://github.com/bbatsov/ruby-style-guide#no-explicit-return
+Style/RedundantReturn:
+  Enabled: false
+
+# Don't use self where it's not needed.
+# https://github.com/bbatsov/ruby-style-guide#no-self-unless-required
+Style/RedundantSelf:
+  Enabled: false
+
+# Checks for proper usage of fail and raise.
+# https://github.com/bbatsov/ruby-style-guide#prefer-raise-over-fail
+Style/SignalException:
+  Enabled: true
+  EnforcedStyle: only_raise
+
+# Enforces the names of some block params.
+# https://github.com/bbatsov/ruby-style-guide#reduce-blocks
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Checks that block braces have or don't have surrounding space.
+# For blocks taking parameters, checks that the left brace has or doesn't have trailing space.
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+  SpaceBeforeBlockParameters: true
+
+# Checks that the equals signs in parameter default assignments have or don't have surrounding space depending on configuration.
+# https://github.com/bbatsov/ruby-style-guide#spaces-around-equals
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+  EnforcedStyle: space
+
+# Use spaces inside hash literal braces - or don't.
+# https://github.com/bbatsov/ruby-style-guide#spaces-operators
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+
+# Checks if uses of quotes match the configured preference.
+# https://github.com/bbatsov/ruby-style-guide#consistent-string-literals
+Style/StringLiterals:
+  Enabled: true
+  Exclude:
+    - "spec/rails_helper.rb"
+    - 'spec/spec_helper.rb'
+
+# Checks trailing blank lines and final newline.
+# https://github.com/bbatsov/ruby-style-guide#newline-eof
+Layout/TrailingEmptyLines:
+  Enabled: true
+  EnforcedStyle: final_newline
+
+# Use the configured style when naming variables.
+# https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars
+Naming/VariableName:
+  Enabled: true
+  EnforcedStyle: snake_case
+
+# Favor modifier while/until usage when you have a single-line body.
+# https://github.com/bbatsov/ruby-style-guide#while-as-a-modifier
+Style/WhileUntilModifier:
+  Enabled: false
+
+#################### Metrics ################################
+
+# A calculated magnitude based on number of assignments, branches, and conditions.
+# http://c2.com/cgi/wiki?AbcMetric
+Metrics/AbcSize:
+  Enabled: false
+  Max: 17
+
+# Avoid classes longer than 100 lines of code.
+Metrics/ClassLength:
+  Enabled: false
+
+# Avoid modules longer than 100 lines of code.
+Metrics/ModuleLength:
+  Enabled: false
+
+# A complexity metric that is strongly correlated to the number of test cases needed to validate a method.
+Metrics/CyclomaticComplexity:
+  Enabled: false
+  Max: 10
+
+# Limit lines to 80 characters.
+# https://github.com/bbatsov/ruby-style-guide#80-character-limits
+Layout:
+  Max: 120
+  IgnoredPatterns: ['\A#', '\A\s*logger\.']
+  Exclude:
+    - config/routes.rb
+
+# Avoid methods longer than 10 lines of code.
+# https://github.com/bbatsov/ruby-style-guide#short-methods
+Metrics/MethodLength:
+  Enabled: false
+
+# Avoid parameter lists longer than three or four parameters.
+# https://github.com/bbatsov/ruby-style-guide#too-many-params
+Metrics/ParameterLists:
+  Enabled: true
+
+# A complexity metric geared towards measuring complexity for a human reader.
+Metrics/PerceivedComplexity:
+  Enabled: false
+  Max: 8
+
+#################### Lint ################################
+### Warnings
+
+# Don't use assignment in conditions.
+# https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition
+Lint/AssignmentInCondition:
+  Enabled: false
+
+# Align block ends correctly.
+Layout/BlockAlignment:
+  Enabled: false
+
+# Check for odd code arrangement in an else block.
+Lint/ElseLayout:
+  Enabled: false
+
+# The number of parameters to format/sprint must match the fields.
+Lint/FormatParameterMismatch:
+  Enabled: false
+
+# Do not use prefix `_` for a variable that is used.
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+# Checks for useless assignment to a local variable.
+# https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars
+Lint/UselessAssignment:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false

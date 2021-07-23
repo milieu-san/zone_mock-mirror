@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+create_table :friendships, force: :cascade, charset: "utf8mb4", comment: "ユーザー中間テーブル" do |t|
+  t.bigint :follower_id, null: false
+  t.bigint :followee_id, null: false
+
+  t.datetime :created_at, null: false
+  t.datetime :updated_at, null: false
+
+  t.index [:follower_id], name: :idx_friendships_01
+  t.index [:followee_id], name: :idx_friendships_02
+  t.index [:follower_id, :followee_id], name: :ui_friendships_01, unique: true
+
+  t.foreign_key :users, column: :follower_id, name: :fk_friendships_01
+  t.foreign_key :users, column: :followee_id, name: :fk_friendships_02
+end

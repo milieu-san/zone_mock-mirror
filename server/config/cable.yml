@@ -1,0 +1,9 @@
+development:
+  adapter: async
+
+test:
+  adapter: test
+
+# NOTE: 本番環境では redis 推奨
+production:
+  adapter: async

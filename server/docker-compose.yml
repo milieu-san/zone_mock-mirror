@@ -1,0 +1,39 @@
+# Define reason why use docker-compose
+
+version: '3'
+
+services:
+  web:
+    build: ""
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    command: bundle exec rails s -b 0.0.0.0
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+  front:
+    build: ../front
+    ports:
+      - '8080:8080'
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/node
+    command: node server.js
+
+volumes:
+  db:
+  bundle:
+  node:

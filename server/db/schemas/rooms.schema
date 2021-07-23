@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+create_table :rooms, force: :cascade, charset: "utf8mb4", comment: "ルーム" do |t|
+  t.bigint :owner_id, null: false
+  t.string :uuid, null: false
+  t.integer :capacity, null: false
+  t.datetime :start_at
+  t.datetime :finish_at
+  t.boolean :is_accepted_camera, null: false, default: true
+  t.boolean :is_accepted_audio, null: false, default: true
+  t.boolean :is_accepted_chat, null: false, default: true
+  t.boolean :is_private, null: false, default: false
+  t.datetime :created_at, null: false
+  t.datetime :updated_at, null: false
+
+  t.index [:owner_id], name: :idx_rooms_01
+  t.index [:uuid], name: :idx_rooms_02
+
+  t.foreign_key :users, column: :owner_id, name: :fk_rooms_01
+end
