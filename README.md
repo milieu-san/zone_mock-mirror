@@ -9,7 +9,7 @@
 [releases]: https://github.com/miball0202/zone_mock-mirror/releases
 
 ZoneMock is a video calling application that provides a place where you can focus like you would in a real office from the comfort of your home.
-And it's also miball0202's technical playground.
+And it's also milieu-san's technical playground.
 
 It is currently under development and will be updated when I get around to it.
 
